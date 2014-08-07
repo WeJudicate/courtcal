@@ -1,0 +1,19 @@
+<html>
+<body>
+<h1>Begin Date</h1>
+<form>
+	<input id="start_date" type="date" name="" value="" placeholder="date">
+	<input id="sentence" type="text" name="sentence" value="" placeholder="sentence">
+	<button type="button" onclick="getDate()">Calculate</button>
+</form>
+<h1>End Date</h1>
+<div id="end_date"></div>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="bundle.js"></script>
+<script type"text/javascript">
+function getDate() {
+	$("#end_date").append("<p>" + start($("#start_date").val(), $("#sentence").val()) + "</p>")
+}
+</script>
+</body>
+</html>
