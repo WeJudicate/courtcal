@@ -86,6 +86,7 @@ function getParoleRangePs (start_date, county, sentence_info, begin, end) {
     parole_min = parole[0]
     if (county == "sup") {
         parole_max = parseInt(parole[1]) / 2
+        parole_min = parole_max
     }
     else {
         parole_max = parole[1]
