@@ -48,7 +48,7 @@
 <!-- Start of first page: #home -->
 <div data-role="page" id="home" style="min-height:490px;">
 	<div data-role="header" data-position="fixed" data-theme="b">
-		<h1>Due Procerssor</h1> 
+		<h1>Due Processor</h1> 
 		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 	</div> 
 	<div id="home_body" data-role="content" style="text-align:left;">	
@@ -380,16 +380,16 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 
 <form>
 	    <fieldset data-role="controlgroup">
-	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup" CHECKED onChange="show('sentencer');"/>
-	         	<label for="radio-view-b">County</label>
-	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" onChange="hide('sentencer');"/>
-	         	<label for="radio-view-a">State</label>
+	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup"  onChange="hide('sentencer');"/>
+	         	<label for="radio-view-b">House of Corrections</label>
+	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" CHECKED onChange="show('sentencer');"/>
+	         	<label for="radio-view-a">State Prison</label>
 	    </fieldset>
 	</div>
 
   <div id="jail_credits">
   <h3>Jail Credits</h3>
-   
+  <p>Enter only eligible date range.</p>
   <label for="hold_start_date">Held Start Date</label>
   <!--  
    data-role="date"
@@ -398,22 +398,16 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
   <label for="hold_end_date">Held End Date</label>
   <input type="date" id="hold_end_date" type="text" name="" placeholder="End Date">
   </div>
-  <div id="nature_of_custody">
-  <!--<select multiple>-->
-  <select>
-    <option value="true">Held on Bail</option>
-    <option value="false">Held without Bail</option>
-    <option value="true">Civil Commitment</option>
-  </select>
-  </div>
   <div id="sentencer">
     <h3>Prior Crimes</h3>
+    <p>Enter all prior convictions.</p>
     <input id="priors" class="crimes" name="">
     <h3>Criminal History</h3>
     <select id="priors_select" multiple data-role="none" style="width:100%;">
     </select>
   </div>
-    <h3>Current Charge</h3>
+    <h3>Current Charge(s)</h3>
+    <p>Enter lead (most seriouse) charge.</p>
     <input id="current" class="crimes" name="">
     <!--AUTOCOMPLETE -->
     <div id="current_place">
