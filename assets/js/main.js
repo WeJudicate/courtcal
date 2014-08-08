@@ -62,8 +62,17 @@ function getDate() {
 	//console.log( current_charge )
 	console.log( current_charge_level)
 	var sentence_info = ( get_history_axis( priors_in, current_charge_level ) );
+	console.log( sentence_info["MaxPrison"]);
 	document.getElementById( "sentence_box" ).value = sentence_info["Range"] + " months";
+	document.getElementById( "MinPrison" ).value = sentence_info["MinPrison"];
+	document.getElementById( "MaxPrison" ).value = sentence_info["MaxPrison"];
+
+	document.getElementById( "MinHC" ).value = sentence_info["MinHC"];
+	document.getElementById( "MaxHC" ).value = sentence_info["MaxHC"];
+
+    // county is "sup"; state is "dist"
     county = $('input:radio[name=radio-view]:checked').val();
+
     minmax = getParoleRangePs(new Date(), county, sentence_info, $("#hold_start_date").val(), $("#hold_end_date").val())
     rangeString = "Minimum Parole Eligibility Date: " + minmax[0] + ". Maximum Parole Eligibility Date: " + minmax[1]
 	console.log(rangeString)

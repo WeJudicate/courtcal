@@ -48,7 +48,7 @@
 <!-- Start of first page: #home -->
 <div data-role="page" id="home" style="min-height:490px;">
 	<div data-role="header" data-position="fixed" data-theme="b">
-		<h1>Due Procerssor</h1> 
+		<h1>Due Processor</h1> 
 		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 	</div> 
 	<div id="home_body" data-role="content" style="text-align:left;">	
@@ -380,16 +380,16 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 
 <form>
 	    <fieldset data-role="controlgroup">
-	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup" CHECKED onChange="show('sentencer');"/>
+	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup"  onChange="hide('sentencer');show('county_prison_info');hide('state_prison_info');"/>
 	         	<label for="radio-view-b">House of Corrections</label>
-	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" onChange="hide('sentencer');"/>
+	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" CHECKED onChange="show('sentencer');show('state_prison_info');hide('county_prison_info');"/>
 	         	<label for="radio-view-a">State Prison</label>
 	    </fieldset>
 	</div>
 
   <div id="jail_credits">
   <h3>Jail Credits</h3>
-   
+  <p>Enter only eligible date range.</p>
   <label for="hold_start_date">Held Start Date</label>
   <!--  
    data-role="date"
@@ -400,12 +400,14 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
   </div>
   <div id="sentencer">
     <h3>Prior Crimes</h3>
+    <p>Enter all prior convictions.</p>
     <input id="priors" class="crimes" name="">
     <h3>Criminal History</h3>
     <select id="priors_select" multiple data-role="none" style="width:100%;">
     </select>
   </div>
-    <h3>Current Charge</h3>
+    <h3>Current Charge(s)</h3>
+    <p>Enter lead (most serious) charge.</p>
     <input id="current" class="crimes" name="">
     <!--AUTOCOMPLETE -->
     <div id="current_place">
@@ -415,8 +417,30 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 
   </div>
   <button type="button" onclick="getDate()">Calculate</button>
-  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="sentence">
-  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="sentence_range">
+  
+
+
+
+<div id="state_prison_info">
+  MA Sentencing Guidelines: 
+  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="sentencing guideline">
+
+  Minimum State Prison Term:
+  <input id="MinPrison" type="text" name="MinPrison" value="" placeholder="N/A">
+
+  Maximum State Prison Term:
+  <input id="MaxPrison" type="text" name="MaxPrison" value="" placeholder="N/A">
+</div>
+
+<div id="county_prison_info" style="display:none;">
+  Minimum House of Corrections Term:
+  <input id="MinHC" type="text" name="MinHC" value="" placeholder="N/A">
+
+  Maximum House of Corrections Term:
+  <input id="MaxHC" type="text" name="MaxHC" value="" placeholder="N/A">
+</div>
+  Parole Information:
+  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="parole info">
 </form>
   </div>
     
