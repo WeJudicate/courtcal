@@ -8,7 +8,7 @@ out2 = []
 current_charge = "";
 
 $.getJSON("data/sentencing_grid.json", function (dat) {
-		console.log( "HELLO WORLD");
+		//console.log( "HELLO WORLD");
 		sentencing_grid = dat;
 		} )
 
@@ -49,8 +49,12 @@ $("#current").on("autocompleteselect", function( event, ui ) {
 function getDate() {
 	var priors_in = $("#priors_select").val()
 	//var current_charge = getOffenseLevel( $("#current").val() )
-	console.log( current_charge )
-	get_history_axis( priors_in, current_charge )
+	//console.log( current_charge )
+	var sentence_info = ( get_history_axis( priors_in, current_charge ) );
+	document.getElementById( "sentence_box" ).value = sentence_info["Range"] + " months";
+
+
+	console.log( sentence_info );
 	//console.log(get_history_axis(priors_in))
 }
 
@@ -158,9 +162,9 @@ function getAxis (priors, current_charge_level ) {
     else if ( criminal_history_group == "E" ) {
 		grid_index = 4	
     }
-    console.log( grid_index );
-    console.log( current_charge_level );
-    console.log( sentencing_grid[grid_index]["Level"][current_charge_level] );
+    //console.log( grid_index );
+    //console.log( current_charge_level );
+    //console.log( sentencing_grid[grid_index]["Level"][current_charge_level] );
 
   	return { "MinPrison": "", "MaxPrison": "", "MinHC": "", "MaxHC": "", "Range": sentencing_grid[grid_index]["Level"][current_charge_level]  }
 
