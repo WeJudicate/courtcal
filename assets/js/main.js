@@ -1,12 +1,4 @@
 
-$(".dater").datepicker();
-
-$('#hold_end_date').datepicker("setDate", new Date() );
-
-function getDate() {
-	$("#end_date").append("<p>" + start($("#start_date").val(), $("#sentence").val()) + "</p>")
-}
-
 crimes_data = []
 out = []
 $.getJSON("data/crimes.json", function (d) {
@@ -40,4 +32,31 @@ function el (tag, attributes, content) {
 function getOffenseLevel(cid) {
 
 	return _.findWhere(crimes_data, {id: parseInt(cid)})["Offense Seriousness Level"]
+}
+
+function calculate () {
+	// var priors_in = $("#priors_select").val()
+	var priors_in = [1, 3, 6]
+
+}
+
+function get_history_axis (priors_in) {
+    var priors = makePriors()
+    priors_in.forEach(function (elem, index, array) {
+        var level = getOffenseLevel(elem);
+        priors[level].push(index)
+    })
+    return getAxis(priors)
+}
+
+function makePriors() {
+    var f = new Array();
+    for (i=0;i<9;i++) {
+        f[i]=new Array();
+    }
+    return f
+}
+
+function getAxis (priors) {
+	_.each()
 }

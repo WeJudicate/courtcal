@@ -1,0 +1,5 @@
+It may be useful to view the IPython notebook .ipynb file in Notebook Viewer:
+
+http://nbviewer.ipython.org/github/WeJudicate/courtcal/blob/master/code/parse_mastercrimelist.ipynb
+
+The .ipynb file is a JSON file containing the code and a snapshot of output of the IPython notebook. It is probably easiest to look at to see how I parsed the data and the logic associated with the criminal history group.
