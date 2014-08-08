@@ -1,7 +1,6 @@
-
 crimes_data = []
 out = []
-$.getJSON("data/crimes.json", function (d) {
+$.getJSON("data/offense_list.json", function (d) {
 	crimes_data = d
 	out = _.map(d, function (value, key, list) {
 		// console.log(value.Offense)
@@ -25,19 +24,18 @@ $("#current").on("autocompleteselect", function( event, ui ) {
 	return false
 });
 
+// This is the function that returns
+function getDate() {
+	var priors_in = $("#priors_select").val()
+	console.log(get_history_axis(priors_in))
+}
+
 function el (tag, attributes, content) {
 	return "<" + tag + " " + attributes + ">" + content + "</" + tag + ">"
 }
 
 function getOffenseLevel(cid) {
-
 	return _.findWhere(crimes_data, {id: parseInt(cid)})["Offense Seriousness Level"]
-}
-
-function calculate () {
-	// var priors_in = $("#priors_select").val()
-	var priors_in = [1, 3, 6]
-
 }
 
 function get_history_axis (priors_in) {
@@ -45,8 +43,10 @@ function get_history_axis (priors_in) {
     priors_in.forEach(function (elem, index, array) {
         var level = getOffenseLevel(elem);
         priors[level].push(index)
+
     })
-    return getAxis(priors)
+    return priors
+    // return getAxis(priors)
 }
 
 function makePriors() {
