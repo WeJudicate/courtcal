@@ -57,8 +57,8 @@ function jailCredits(h, b) {
 	} 
 }
 
-function computeHold() {
-	b = argv["hold_begin"]
+function computeHold(hold_begin) {
+	b = hold_begin
 	if (b) {
 		return moment().diff(moment(b), 'days')
 	}
