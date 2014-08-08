@@ -19,9 +19,7 @@ function start(start_date, sentence, hold_begin, hold_end) {
 	
 	held = moment(hold_end).diff(moment(hold_begin), 'days')
 	console.log(held)
-	if (awaiting == "yes") {
-		finalDay = finalDay.subtract(parseInt(held),"days")
-	}
+	finalDay = finalDay.subtract(parseInt(held),"days")
 	return finalDay.format("YYYY-MM-DD")
 }
 
