@@ -32,7 +32,7 @@
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="assets/js/script_lib.2014-08-06.js"></script>
+	<script src="assets/js/script_lib.2014-08-08.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
 
     <!-- datepicker stuff
@@ -43,19 +43,21 @@
 	
 </head> 
 
-<body style="min-height:490px;"> 
+<body> 
  
 <!-- Start of first page: #home -->
-<div data-role="page" id="home">
+<div data-role="page" id="home" style="min-height:490px;">
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<h1>Court Cal</h1> 
-		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 	</div> 
 	<div id="home_body" data-role="content" style="text-align:left;">	
 			<ul data-role="listview">
-				<li><a href="#guide"><h3>User's Guide</h3><p>Instructions on how to use each of the tools below.</p></a></li>	
-				<li><a href="#indigency"><h3>Indigency</h3><p>adsd</p></a></li>		
-				<li><a href="#sentence"><h3>Sentencing</h3><p>adsd</p></a></li>		
+				<!--<li><a href="#guide"><h3>Overview</h3></a></li>-->
+				<li><a href="#indigency"><h3>Indigency</h3><p style="white-space:normal;">
+					Calculate likely indigency status for MA civil and criminal proceedings based on SJC Rule 3:10 and MGL c261 s27A.
+				</p></a></li>		
+				<li><a href="#sentence"><h3>Sentencing</h3><p style="white-space:normal;">Count days for jail credit, determine sentence based on MA Sentencing Guidelines, and estimate parole eligibility date.</p></a></li>		
 				</ul>
  		</div><!-- /content -->
 </div><!-- /#home -->
@@ -63,9 +65,9 @@
 <!-- Start of first page: #find -->
 <div data-role="page" id="find">
 	<div data-role="header" data-position="fixed" data-theme="b">
-		<a href="#home" data-rel="back" data-iconpos="notext" data-icon="arrow-l"  data-transition="slideup" data-direction="reverse"></a>
+		<a href="#indigency" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
 		<h1>Attorney Directory</h1>
-		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 	</div>
 	<div id="about_v" data-role="content" style="text-align:left;">
 <form action="http://massbbo.org/bbolookup.php" method="get">
@@ -106,7 +108,7 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
 		<h1>User's Guide</h1>
-		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 	</div>
 	<div id="about_v" data-role="content" style="text-align:left;">
 
@@ -119,28 +121,131 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 <!-- Start of first page: #info -->
 <div data-role="page" id="info">
 	<div data-role="header" data-position="fixed" data-theme="b">
-		<a href="#home" data-iconpos="notext" data-icon="arrow-d"  data-transition="slideup" data-direction="reverse"></a>
+		<a href="#home" data-rel="back" data-iconpos="notext" data-icon="delete"  data-transition="fade"></a>
 		<h1>About</h1>
 	</div>
 	<div id="about_v" data-role="content" style="text-align:left;">
-
+		<p>
+			The <a href="https://github.com/WeJudicate/courtcal" target=_blank>code</a> for this application is hosted on GitHub and licensed under an <a href="https://github.com/WeJudicate/courtcal/blob/gh-pages/LICENSE" target=_blank>MIT licence</a>.
+		</p>
 		<div data-role="collapsible">
     		<h4>Disclaimer</h4>
     		<p>
-    		</p>
+			<b>NO legal advice here.</b> Nothing presented here should be construed as legal advice nor does anything on this sites, or ones interactions with it, create an attorney-client relationship.
+			</p>
+			<p>
+				THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+			</p>
    		</div>
 		
 		<div data-role="collapsible">
     		<h4>Indigency: Logic &amp; Data</h4>
 			<p>
-			</p>    	
+			The indigency calculator assumes the following:
+			</p>
+			<h2>MA SJC Rule 3:10</h2>
+			<p><b>Section 1. Definitions.</b>The following definitions apply in this rule: </p>
+			<p>. . .</p>
+			<p><b>(f)</b> Indigent -- A party who is:
+			<ul>
+			(i) receiving one of the following types of public assistance: Aid to Families with Dependent Children (AFDC), Emergency Aid to Elderly, Disabled and Children (EAEDC), poverty related veterans' benefits, food stamps, refugee resettlement benefits, Medicaid, or Supplemental Security Income (SSI);
+			<br/><br/>
+			(ii) receiving an annual income, after taxes, one hundred twenty five percent or less of the then current poverty threshold referred to in G. L. c. 261, § 27A(b);
+			<br/><br/>
+			(iii) residing in a tuberculosis treatment center or a public or private mental health, mental retardation or long term care facility, including the Bridgewater State Hospital and the Treatment Center, or the subject of a proceeding in which admission or commitment to such a center or facility is sought, or who is the subject of a proceeding in which a substituted judgment determination concerning treatment is sought, provided, however, that where the judge has reason to believe that the party is not indigent, a determination of indigency shall be made in accordance with Section 4 and other applicable provisions of this rule. The provisions of paragraph (b) of Section 1 of this rule notwithstanding, for purposes of such determination "available funds" shall not include the liquid assets or disposable net monthly income of any member of the party's family.
+			<br/><br/>
+			(iv) serving a sentence in a correctional institution and has no available funds; or
+			<br/><br/>
+			(v) held in custody in jail and has no available funds.
+			</ul>
+			</p>
+
+			<p><b>(g)</b> Indigent but Able to Contribute -- A party who
+			<ul>
+			(i) has an annual income, after taxes, of more than one hundred twenty five percent and less than two hundred fifty percent of the then current poverty threshold referred to in G. L. c. 261, § 27A(b), or
+			<br/><br/>
+			(ii) is charged with a felony within the jurisdiction of the Superior Court and whose available funds are insufficient to pay the anticipated cost of counsel for the defense of the felony but are sufficient to pay a portion of that cost.
+			</ul>
+			<p>. . .</p>
+
+			<p>See 
+			<a href="http://www.lawlib.state.ma.us/source/mass/rules/sjc/sjc310.html" target=_310>Massachusetts Supreme Judicial Court Rule 3:10: Assignment of Counsel</a>.
+			</p>
+			
+			<h2>M.G.L. Chapter 261 MA § 27A</h2>
+			<p>
+			Section 27A. As used in sections twenty-seven A to twenty-seven G, inclusive, the following words shall have the following meanings:
+			</p>
+			<p>
+			“Indigent”, (a) a person who receives public assistance under aid to families with dependent children, program of emergency aid for elderly and disabled residents or veterans’ benefits programs or who receives assistance under Title XVI of the Social Security Act or the medicaid program, 42 U.S.C.A. 1396, et seq.; (b) a person whose income, after taxes, is 125 per cent or less of the current poverty threshold established annually by the Community Services Administration pursuant to section 625 of the Economic Opportunity Act, as amended; or (c) a person who is unable to pay the fees and costs of the proceeding in which he is involved or is unable to do so without depriving himself or his dependents of the necessities of life, including food, shelter and clothing, but an inmate shall not be adjudged indigent pursuant to section 27C unless the inmate has complied with the procedures set forth in section 29 and the court finds that the inmate is incapable of making payments under the plans set forth in said section 29.
+			</p>
+			<p>
+			. . .
+			</p>
+			<p>See 
+			<a href="https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleVI/Chapter261/Section27A" target=_261>Massachusetts General Laws: Chapter 261 MA § 27A</a>. Related: <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.
+			</p>
+
+			<h2>2014 Poverty Guidelines</h2>
+
+			<table width="100%">
+			<tr><td>
+			<b>Size</b>
+			</td><td>
+			<b>100%</b>
+			</td></td><td>
+			<b>125%</b>
+			</td></td><td>
+			<b>250%</b>
+			</td></tr>
+			<tr><td>1</td><td>$11,670</td><td>$14,587.50</td><td>$29,175</td></tr>
+			<tr><td>2</td><td>$15,730</td><td>$19,662.50</td><td>$39,325</td></tr>
+			<tr><td>3</td><td>$19,790</td><td>$24,737.50</td><td>$49,475</td></tr>
+			<tr><td>4</td><td>$23,850</td><td>$29,812.50</td><td>$59,625</td></tr>
+			<tr><td>5</td><td>$27,910</td><td>$34,887.50</td><td>$69,775</td></tr>
+			<tr><td>6</td><td>$31,970</td><td>$39,962.50</td><td>$70,334</td></tr>
+			<tr><td>7</td><td>$36,030</td><td>$45,037.50</td><td>$90,075</td></tr>
+			<tr><td>8</td><td>$40,090</td><td>$50,112.50</td><td>$100,225</td></tr>
+			</table>
+
+			<p>See <a href="https://federalregister.gov/a/2014-01303" target=_guidlines>Federal Register, 79 FR 3593, 3593 -3594 (January 22, 2014)</a> (listing of 100% values).
+			</p>
+
+			<h2>Taxes</h2>
+
+			<p>
+			For the purpose of estimating a party's after tax income, this calculator assumes:
+			</p>
+			<ul>
+				<li>a federal deduction of $5,850
+				<li>a $3,800 exception for each member of the household
+				<li>a state deduction of $4,400
+				<li>a state exception of up to $2,000 of income paid towards Social Security
+				<li>a FICA of 5.65% on gross income (for employes)
+				<li>a SECA of 9.85% on 95.8% of gross income (contractors/self-employed)
+				<li>a state income tax of 5.3% if ones state-taxable income is over $24,000
+				<li>a federal income tax of either: (1) 15% for income between $8,701 and $35,350; (2) 25% for income between $35,351 and $85,650; (3) 28% for income between $85,651 and $178,650; or (4) 35% for income above $178,650. Note: The calculator does not apply these rates independently upon their respective ranges. Rather, it imposes the largest applicable rate to all income. Consequently, it produces an overestimate of federal income tax owed.
+			</ul>
 		</div>
 		
 		<div data-role="collapsible">
     		<h4>Sentencing: Logic &amp; Data</h4>
     		<p>
-    		</p>
+			The sentencing calculator assumes the following:
+			</p>
+			<h2>Massachusetts Sentencing Guidelines</h2>
+			<p>
+				See <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/ma-sentencing-guidelines-gen.html" target=_blank>Massachusetts Sentencing Guidelines</a>
+			</p>
+			Also:
+			<ul>
+				<li><a href="http://www.mass.gov/courts/docs/admin/sentcomm/mastercrimelist.xls" target="_blank">Master Crime List</li>
+				<li><a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/criminal-history-groups-ma-sentencing-guidelines-gen.html" target=_blank>Criminal History Groups</li>
+				<li><a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/ma-sentencing-grid-gen.html" target=_blank target=_blank>Sentencing Guidelines Grid</a></li>
+    		</ul>
    		</div>
+		
+		<a href="mailto:incourt@davidcolarusso.com" data-role="button">Email Curator</a>
 
 	</div><!-- /content -->
 </div><!-- /#info -->
@@ -151,15 +256,15 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
 		<h1>Indigency</h1>
-		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="fade"></a>
 	</div>
 	<div id="indigency_body" data-role="content" style="text-align:left;">	
 	
 		 <fieldset data-role="controlgroup">
-	         	<input type="radio" name="crim-civ" id="crim" value="criminal" CHECKED onChange="show('cw');show('crim_op');hide('civ_op');"/>
-	         	<label for="crim">Criminal</label>
-	         	<input type="radio" name="crim-civ" id="civ" value="civil" onChange="hide('cw');hide('crim_op');show('civ_op');"/>
-	         	<label for="civ">Civil</label>
+	         	<input type="radio" name="crimciv" id="crim" value="crim" CHECKED onChange="show('cw');show('crim_op');hide('civ_op');show('crim_fn');hide('civ_fn');"/>
+	         	<label for="crim">Criminal Case</label>
+	         	<input type="radio" name="crimciv" id="civ" value="civ" onChange="hide('cw');hide('crim_op');show('civ_op');show('civ_fn');hide('crim_fn');"/>
+	         	<label for="civ">Civil Case</label>
 	    </fieldset>
 	
 		<p><font size=+1><b>Regular Household Income?</b></font><BR><font color=#777777><span id="cw"><em>Exclude the complaining witness.</em></font></span></p>
@@ -185,16 +290,10 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
  			</select>
  		</fieldset>
  		<fieldset data-role="controlgroup">
-			
- 			<input type="checkbox" name="tax" id="tax" value="1" class="custom" />
- 			<label for="tax">Above is after-tax income</label>
 
  			<input type="checkbox" name="assist" id="assist" value="1" class="custom" />
  			<label for="assist">On public assistance<sup>&dagger;</sup></label>
 			
- 			<input type="checkbox" name="contractor" id="contractor" value="1" class="custom" />
- 			<label for="contractor">Contractor / Self-employed</label>
-
 			<!-- Crim -->
  			<span id="crim_op"><input type="checkbox" name="bail" id="bail" value="1" class="custom" />
  			<label for="bail">Unable to make bail</label>
@@ -211,19 +310,28 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 
 			<!-- Civil -->
  			<span id="civ_op" style="display:none;">
-			<input type="checkbox" name="unable" id="unable" value="1" class="custom" />
- 			<label for="unable">Unable to pay</label>
 			<input type="checkbox" name="deprive" id="deprive" value="1" class="custom" />
  			<label for="deprive">Unable to pay w/o depriving self or dependents of life necessities</label>
+			<input type="checkbox" name="suing" id="suing" value="1" class="custom" />
+ 			<label for="suing">Inmate suing State party re: confinement condition, not seeking immediate release</label>
 			</span>
-			<!-- /Civil --> 		
+			<!-- /Civil --> 	
+ 			
+			<input type="checkbox" name="tax" id="tax" value="1" class="custom" />
+ 			<label for="tax">Above is after-tax income</label>
+			
+ 			<input type="checkbox" name="contractor" id="contractor" value="1" class="custom" />
+ 			<label for="contractor">Contractor / Self-employed</label>			
 			
 		</fieldset>
 		<fieldset data-role="controlgroup">
  			<a href="javascript:void('');" onclick="page='ans';calculate('');" data-icon="arrow-r" data-role="button">Calculate</a>
 		</fieldset>
- 			<p>
- 				<font size=-1><sup>&dagger;</sup>Specifically: Aid to Families with Dependent Children (AFDC), Emergency Aid to Elderly, Disabled and Children (EAEDC), poverty related veterans' benefits, food stamps, refugee resettlement benefits, Medicaid, or Supplemental Security Income (SSI);</font>
+ 			<p id="crim_fn">
+ 				<font size=-1><sup>&dagger;</sup>Specifically: Aid to Families with Dependent Children (AFDC), Emergency Aid to Elderly, Disabled and Children (EAEDC), poverty related veterans' benefits, food stamps, refugee resettlement benefits, Medicaid, or Supplemental Security Income (SSI).</font>
+ 			</p>
+ 			<p id="civ_fn" style="display:none;">
+ 				<font size=-1><sup>&dagger;</sup>Specifically: Aid to Families with Dependent Children (AFDC), program of emergency aid for elderly and disabled residents or veterans’ benefits programs or assistance under Title XVI of the Social Security Act or the medicaid program, 42 U.S.C.A. 1396, et seq.</font>
  			</p>
  		</div><!-- /content -->
 </div><!-- /#indigency -->
@@ -234,62 +342,36 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<a href="#indigency" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
 		<h1>Classification</h1>
-		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="fade"></a>
 	</div>
-	<div id="ans_v" data-role="content" style="text-align:left;">	
-		loading...
+	<div data-role="content" style="text-align:left;">
+		<div id="ans_v">	
+			You can't get there from here. Try the <a href="#home">home screen</a>.
+		</div>
+		<div id="lawyer_links" style="display:none;margin-top:0;padding-top:0;">	
+			<p><a href="http://lawlib.state.ma.us/lawyer/index.html" target=_blank data-role="button">Find an Attorney</a></p>
+		</div>
+		<div id="civ_links" style="display:none;margin-top:0;padding-top:0;">	
+			<h3>Waiver of Fees</h3>
+			<p>In order to apply for a waiver of fees, you'll likely need to complete the form(s) and follow the instructions linked below. See <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.</p>
+			<fieldset data-role="controlgroup"> 
+				<a href="http://www.mass.gov/courts/docs/forms/sjc/affidavitofindigency.pdf" target="_blank" data-role="button">Affidavit of Indigency</a>
+				<a id="supp_aff" href="http://www.mass.gov/courts/docs/forms/sjc/supplementaffidavit.pdf" target="_blank" data-role="button" style="display:none;">Supplement to the Affidavit of Indigency</a>
+				<a id="inmates" href="http://www.mass.gov/courts/docs/forms/sjc/inmates-affidavit-of-indigency.pdf" target="_blank" data-role="button" style="display:none;">Inmate's Affidavit of Indigency</a>
+				<a href="http://www.mass.gov/courts/docs/sjc/docs/instructionsforaffidavit.pdf" target="_blank" data-role="button" >Instructions for Users</a>
+			</fieldset>
+		</div>
 	</div>
+
 	<!-- /content -->
 </div><!-- /#ans -->
-
-<!-- Start of first page: #find -->
-<div data-role="page" id="find">
-	<div data-role="header" data-position="fixed" data-theme="b">
-		<a href="#indigency" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
-		<h1>Attorney Directory</h1>
-		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
-	</div>
-	<div id="about_v" data-role="content" style="text-align:left;">
-<form name="BBO" action="http://massbbo.org/bbolookup.php" method="get">
-
-This form links directly to the <a href="http://massbbo.org/bbolookup.php" target=_bbo>attorney lookup feature</a> hosted on the BBO's website. 
-
-<div data-role="fieldcontain" class="ui-hide-label">
-	<label for="sf">First Name:</label>
-	<input type="text" name="sf" id="sf" value="" placeholder="First Name"/>
-</div>
-<div data-role="fieldcontain" class="ui-hide-label">
-	<label for="sl">Last Name:</label>
-	<input type="text" name="sl" id="sl" value="" placeholder="Last Name"/>
-</div>
-
-<div data-role="fieldcontain" class="ui-hide-label">
-    <fieldset data-role="controlgroup">
-	   <input type="checkbox" name="soundex" id="soundex" class="custom" value="Soundslike"/>
-	   <label for="soundex">unsure of last name</label>
-    </fieldset>
-</div>
-
-<div data-role="fieldcontain" class="ui-hide-label">
-	<label for="sc">City:</label>
-	<input type="text" name="sc" id="sc" value="" placeholder="City"/>
-</div>
-
-<input type=submit value="submit" onCLick="alert('We are sending you to the BBO\'s attorney directory, over which we have no control.');">
-
-		
-		</form>
-	</div><!-- /content -->
-</div><!-- /#find -->
-
-
 
 <!-- Start of first page: #sentence -->
 <div data-role="page" id="sentence">
 	<div data-role="header" data-position="fixed" data-theme="b">
 		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
 		<h1>Sentencing</h1>
-		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="fade"></a>
 
 	</div>
 	<div id="about_v" data-role="content" style="text-align:left;">

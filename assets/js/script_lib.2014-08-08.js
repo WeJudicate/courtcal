@@ -26,6 +26,7 @@ function readCookie(name) {
 }
 
 function calculate () {
+	var crimciv = $('input[name="crimciv"]:checked').val();
 	var income =  document.getElementById('income').value; 
 	var grossincome =  income; 
 	var range = document.getElementById('range').value;
@@ -38,25 +39,31 @@ function calculate () {
 	var multiplier;
 	var label;
 	var explination = "";
+		
+	hide("civ_links");
+	hide("lawyer_links");
+	hide("supp_aff");
+	hide("inmates");
 
 	if ( household == 1 ) {
-		threshold = 11170;
+		threshold = 11670;
 	} else if (household == 2) {
-		threshold = 15130;
+		threshold = 15730;
 	} else if (household == 3) {
-		threshold = 19090;
+		threshold = 19790;
 	} else if (household == 4) {
-		threshold = 23050;
+		threshold = 23850;
 	} else if (household == 5) {
-		threshold = 27010;
+		threshold = 27910;
 	} else if (household == 6) {
-		threshold = 30970;
+		threshold = 31970;
 	} else if (household == 7) {
-		threshold = 34930;
+		threshold = 36030;
 	} else if (household == 8) {
-		threshold = 38890;
+		threshold = 40090;
 	}
 	
+	// weekly, monthly, quarterly, annually 
 	if ( range == 1 ) {
 		multiplier = 52;
 	} else if (range == 2) {
@@ -70,6 +77,7 @@ function calculate () {
 	income = income * multiplier;
 	grossincome = grossincome * multiplier;
 
+	// untaxed
 	if ( document.getElementById('tax').checked == false ) {
 		agross = income - 5850 - 3800 * household;
 		if (agross < 0) {
@@ -119,7 +127,7 @@ function calculate () {
 	income = income.toFixed(2);
 
 	
-	if (income <= threshold*1.25 || document.getElementById('assist').checked == true || document.getElementById('bail').checked == true || document.getElementById('custody').checked == true || document.getElementById('treatment').checked == true) { 
+	if (crimciv == "crim" && (income <= threshold*1.25 || document.getElementById('assist').checked == true || document.getElementById('bail').checked == true || document.getElementById('custody').checked == true || document.getElementById('treatment').checked == true)) { 
 		label = "<p style=\"background:#ddffdd;padding:10px;text-align:center;\"><font size=+2>Indigent</font></p>";
 
 		if (income <= threshold*1.25) {
@@ -143,11 +151,29 @@ function calculate () {
 		} 		
 		
 
-	} else if (income > threshold*1.25 && income < threshold*2.5) {
+	} else if (crimciv == "civ" && (income <= threshold*1.25 || document.getElementById('assist').checked == true || document.getElementById('deprive').checked == true)) { 
+		label = "<p style=\"background:#ddffdd;padding:10px;text-align:center;\"><font size=+2>Indigent</font></p>";
+
+		if (income <= threshold*1.25) {
+			explination = explination + "According to Chapter 261 sec 27A, a party is Indigent if his/her \"... income, after taxes, is 125 per cent [$"+ addCommas(indgent)+ "] or less of the current poverty threshold established annually by the Community Services Administration pursuant to section 625 of the Economic Opportunity Act, as amended...\"";
+		}
+
+		if (document.getElementById('assist').checked == true) {
+			explination = explination + "<p>According to Chapter 261 sec 27A, a party is Indigent if (s)he \"...receives public assistance under aid to families with dependent children, program of emergency aid for elderly and disabled residents or veterans’ benefits programs or who receives assistance under Title XVI of the Social Security Act or the medicaid program, 42 U.S.C.A. 1396, et seq....\"</p>";
+		} 
+
+		if (document.getElementById('deprive').checked == true) {
+			explination = explination + "<p>According to Chapter 261 sec 27A, a party is Indigent if (s)he \"...is unable to pay the fees and costs of the proceeding in which he is involved or is unable to do so without depriving himself or his dependents of the necessities of life, including food, shelter and clothing...\"</p>";
+			show("supp_aff");
+		} 		
+		
+		show("civ_links");
+
+	} else if (crimciv == "crim" && income > threshold*1.25 && income < threshold*2.5) {
 		label = "<p style=\"background:#ffffdd;padding:10px;text-align:center;\"><font size=+2>Indigent but Able to Contribute</font></p>";
 		explination = explination + "<p>According to Rule 3:10 &sect;1(g), a party is Indigent but Able to Contribute if (s)he \"has an annual income, after taxes, of more than one hundred twenty five percent [$"+ addCommas(indgent)+ "] and less than two hundred fifty percent [$"+ addCommas(indgentbutable)+ "] of the then current poverty threshold....\"</p>";
 
-	} else {
+	} else if (crimciv == "crim") {
 		label = "<p style=\"background:#FA8072;padding:10px;text-align:center;\"><font size=+2>Not Indigent</font></p>";
 		explination = "<p>At first glance, the party does not seem to meet the definition of Indigent or Indigent But Able to Contribute under Rule 3:10 &sect;1(f)-(g).</p>";
 
@@ -155,9 +181,20 @@ function calculate () {
 			explination = explination + "<p style=\"background:yellow;padding:5px;\">However, according to Rule 3:10 &sect;1(g)(ii), a party is Indigent but Able to Contribute if (s)he \"is charged with a felony within the jurisdiction of the Superior Court and whose available funds are insufficient to pay the anticipated cost of counsel for the defense of the felony but are sufficient to pay a portion of that cost.\" So one might want to look into this.</p>";
 		} 	
 
-		explination = explination + "<p>According to Rule 3:10 &sect;1(g), a party is Indigent but Able to Contribute if (s)he \"has an annual income, after taxes, of more than one hundred twenty five percent [$"+ addCommas(indgent)+ "] and less than two hundred fifty percent [$"+ addCommas(indgentbutable)+ "] of the then current poverty threshold....\"</p><p><a href=\"#find\" data-role=\"button\">Find an Attorney</a></p> ";
+		show("lawyer_links");
 				
+	} else if (crimciv == "civ") {
+		label = "<p style=\"background:#FA8072;padding:10px;text-align:center;\"><font size=+2>Not Indigent</font></p>";
+		explination = "<p>At first glance, the party does not seem to meet the definition of Indigent or Indigent But Able to Contribute under Chapter 261 sec 27A.</p>";
+		
+		show("civ_links");
+		show("lawyer_links");		
 	}
+	
+	if (crimciv == "civ" && document.getElementById('suing').checked == true) {
+		explination = explination + "<p>According to Chapter 261 sec 27A, however, \"...an inmate shall not be adjudged indigent pursuant to section 27C unless the inmate has complied with the procedures set forth in section 29 and the court finds that the inmate is incapable of making payments under the plans set forth in said section 29....\"</p>";
+		show("inmates");
+	} 
 	
 	
 	if ( document.getElementById('tax').checked == false) {
@@ -173,6 +210,7 @@ function calculate () {
 	$('#ans_v').html(resultDocument).trigger("create");
   	//$.mobile.changepage('#ans');
 	document.location.href='#ans';
+	$('#ans').div('refresh');
 
 } // end load_sub
 
