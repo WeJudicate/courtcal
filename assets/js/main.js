@@ -57,21 +57,21 @@ $("#current").on("autocompleteselect", function( event, ui ) {
 // This is the function that returns
 function getDate() {
 	var priors_in = $("#priors_select").val()
-    var date_range = $("#hold_start_date").val()
+
 	//var current_charge = getOffenseLevel( $("#current").val() )
 	//console.log( current_charge )
 	console.log( current_charge_level)
 	var sentence_info = ( get_history_axis( priors_in, current_charge_level ) );
 	document.getElementById( "sentence_box" ).value = sentence_info["Range"] + " months";
     county = $('input:radio[name=radio-view]:checked').val();
-    minmax = getParoleRangePs(new Date(), county, sentence_info, date_range)
+    minmax = getParoleRangePs(new Date(), county, sentence_info, $("#hold_start_date").val(), $("#hold_end_date").val())
     rangeString = "Minimum Parole Eligibility Date: " + minmax[0] + ". Maximum Parole Eligibility Date: " + minmax[1]
 	console.log(rangeString)
     $("#sentence_range_box").val(rangeString)
 	//console.log(get_history_axis(priors_in))
 }
 
-function getParoleRangePs (start_date, county, sentence_info, hold_range) {
+function getParoleRangePs (start_date, county, sentence_info, begin, end) {
     parole_range = sentence_info["Range"]
     parole = parole_range[parole_range.length -1].split("-")
     parole_min = parole[0]
@@ -81,8 +81,9 @@ function getParoleRangePs (start_date, county, sentence_info, hold_range) {
     else {
         parole_max = parole[1]
     }
-    min = start(start_date, "0/"+parole_min+"/0", true, "yes", hold_range)
-    max = start(start_date, "0/"+parole_max+"/0", true, "yes", hold_range)
+    console.log(begin, end)
+    min = start(start_date, "0/"+parole_min+"/0", begin, end)
+    max = start(start_date, "0/"+parole_max+"/0", begin, end)
     return [min, max]
 }
 

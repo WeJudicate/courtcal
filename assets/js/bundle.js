@@ -10,17 +10,17 @@ var sentence = argv["s"];
 var held = argv["held"]
 var awaiting = argv["awaiting"]
 
-module.exports = function (start_date, sentence, held, awaiting, hold_begin) {
-	return start(start_date, sentence, held, awaiting, hold_begin)
+module.exports = function (start_date, sentence, hold_begin, hold_end) {
+	return start(start_date, sentence, hold_begin, hold_end)
 }
 
-function start(start_date, sentence, held, awaiting, hold_begin) {
+function start(start_date, sentence, hold_begin, hold_end) {
 	start_date = moment(start_date)
 	totalDays = convertTime(start_date, sentence)
 	finalDay = start_date.add(totalDays,"days")
 	
-	held = computeHold()
-//	console.log(held)
+	held = moment(hold_end).diff(moment(hold_begin), 'days')
+	console.log(held)
 	if (awaiting == "yes") {
 		finalDay = finalDay.subtract(parseInt(held),"days")
 	}
@@ -59,8 +59,8 @@ function jailCredits(h, b) {
 	} 
 }
 
-function computeHold() {
-	b = argv["hold_begin"]
+function computeHold(hold_begin) {
+	b = hold_begin
 	if (b) {
 		return moment().diff(moment(b), 'days')
 	}
