@@ -16,7 +16,7 @@
     <meta property="og:description"
           content=""/>
 
-	<title>Due Procerssor</title> 
+	<title>Due Processor</title> 
 
 	<!-- this sheet provides style for calendar and autocomplete -->
     <link href="assets/vendor/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
@@ -381,9 +381,9 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 <form>
 	    <fieldset data-role="controlgroup">
 	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup" CHECKED onChange="show('sentencer');"/>
-	         	<label for="radio-view-b">County</label>
+	         	<label for="radio-view-b">House of Corrections</label>
 	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" onChange="hide('sentencer');"/>
-	         	<label for="radio-view-a">State</label>
+	         	<label for="radio-view-a">State Prison</label>
 	    </fieldset>
 	</div>
 
@@ -397,14 +397,6 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
   <input type="date" id="hold_start_date" type="text" name="" placeholder="Start Date">
   <label for="hold_end_date">Held End Date</label>
   <input type="date" id="hold_end_date" type="text" name="" placeholder="End Date">
-  </div>
-  <div id="nature_of_custody">
-  <!--<select multiple>-->
-  <select>
-    <option value="true">Held on Bail</option>
-    <option value="false">Held without Bail</option>
-    <option value="true">Civil Commitment</option>
-  </select>
   </div>
   <div id="sentencer">
     <h3>Prior Crimes</h3>
