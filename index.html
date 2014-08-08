@@ -16,7 +16,7 @@
     <meta property="og:description"
           content=""/>
 
-	<title>Due Procerssor</title> 
+	<title>Due Processor</title> 
 
 	<!-- this sheet provides style for calendar and autocomplete -->
     <link href="assets/vendor/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
@@ -423,8 +423,30 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 
   </div>
   <button type="button" onclick="getDate()">Calculate</button>
-  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="sentence">
-  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="sentence_range">
+  
+
+
+
+<div id="state_prison_info">
+  MA Sentencing Guidelines: 
+  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="sentencing guideline">
+
+  Minimum State Prison Term:
+  <input id="MinPrison" type="text" name="MinPrison" value="" placeholder="N/A">
+
+  Maximum State Prison Term:
+  <input id="MaxPrison" type="text" name="MaxPrison" value="" placeholder="N/A">
+</div>
+
+<div id="county_prison_info">
+  Minimum House of Corrections Term:
+  <input id="MinHC" type="text" name="MinHC" value="" placeholder="N/A">
+
+  Maximum House of Corrections Term:
+  <input id="MaxHC" type="text" name="MaxHC" value="" placeholder="N/A">
+</div>
+  Parole Information:
+  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="parole info">
 </form>
   </div>
     
