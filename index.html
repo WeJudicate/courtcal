@@ -1,81 +1,336 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html> 
+<html> 
 
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link href="assets/vendor/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon" href="images/icon.png"/> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />  
 
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="assets/css/main.css">
+	<meta property="og:title" content="In Court"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://wejudicate.github.io/courtcal/"/>
+    <meta property="og:image" content="http://wejudicate.github.io/courtcal/images/share_icon.jpg"/>
+    <meta property="og:site_name" content="In Court"/>
+    <meta property="og:description"
+          content=""/>
 
-        <script src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-    <div class="container">
+	<title>Court Cal</title> 
+
+	<!-- this sheet provides style for calendar and autocomplete -->
+    <link href="assets/vendor/jquery-ui-1.11.0.custom/jquery-ui.css" rel="stylesheet">
+    <!--
+    These are superceeded by jquery mobile sheets
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    -->
+    <!-- not sure what this script does -->
+    <script src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="assets/js/script_lib.2014-08-06.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+
+    <!-- datepicker stuff
+    <link rel="stylesheet" href="http://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
+    <script src="http://rawgithub.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="http://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
+	-->
+	
+</head> 
+
+<body style="min-height:490px;"> 
+ 
+<!-- Start of first page: #home -->
+<div data-role="page" id="home">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Court Cal</h1> 
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+	</div> 
+	<div id="home_body" data-role="content" style="text-align:left;">	
+			<ul data-role="listview">
+				<li><a href="#guide"><h3>User's Guide</h3><p>Instructions on how to use each of the tools below.</p></a></li>	
+				<li><a href="#indigency"><h3>Indigency</h3><p>adsd</p></a></li>		
+				<li><a href="#sentence"><h3>Sentencing</h3><p>adsd</p></a></li>		
+				</ul>
+ 		</div><!-- /content -->
+</div><!-- /#home -->
+
+<!-- Start of first page: #find -->
+<div data-role="page" id="find">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-rel="back" data-iconpos="notext" data-icon="arrow-l"  data-transition="slideup" data-direction="reverse"></a>
+		<h1>Attorney Directory</h1>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+	</div>
+	<div id="about_v" data-role="content" style="text-align:left;">
+<form action="http://massbbo.org/bbolookup.php" method="get">
+
+This form links directly to the <a href="http://massbbo.org/bbolookup.php" target=_bbo>attorney lookup feature</a> hosted on the BBO's website. 
+
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sf">First Name:</label>
+	<input type="text" name="sf" id="sf" value="" placeholder="First Name"/>
+</div>
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sl">Last Name:</label>
+	<input type="text" name="sl" id="sl" value="" placeholder="Last Name"/>
+</div>
+
+<div data-role="fieldcontain" class="ui-hide-label">
+    <fieldset data-role="controlgroup">
+	   <legend>Sounds like:</legend>
+	   <input type="checkbox" name="soundex" id="soundex" class="custom" value="Soundslike"/>
+	   <label for="soundex">unsure of last name</label>
+    </fieldset>
+</div>
+
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sc">City:</label>
+	<input type="text" name="sc" id="sc" value="" placeholder="City"/>
+</div>
+
+<input type=submit value="submit" onCLick="alert('We are sending you to the BBO\'s attorney directory, over which we have no control.');">
+
+		
+		</form>
+	</div><!-- /content -->
+</div><!-- /#find -->
+
+<!-- Start of first page: #guide -->
+<div data-role="page" id="guide">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
+		<h1>User's Guide</h1>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+	</div>
+	<div id="about_v" data-role="content" style="text-align:left;">
+
+		<p>
+		[guide]
+		</p>
+	</div><!-- /content -->
+</div><!-- /#guide -->
+
+<!-- Start of first page: #info -->
+<div data-role="page" id="info">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-iconpos="notext" data-icon="arrow-d"  data-transition="slideup" data-direction="reverse"></a>
+		<h1>About</h1>
+	</div>
+	<div id="about_v" data-role="content" style="text-align:left;">
+
+		<div data-role="collapsible">
+    		<h4>Disclaimer</h4>
+    		<p>
+    		</p>
+   		</div>
+		
+		<div data-role="collapsible">
+    		<h4>Indigency: Logic &amp; Data</h4>
+			<p>
+			</p>    	
+		</div>
+		
+		<div data-role="collapsible">
+    		<h4>Sentencing: Logic &amp; Data</h4>
+    		<p>
+    		</p>
+   		</div>
+
+	</div><!-- /content -->
+</div><!-- /#info -->
+
+
+<!-- Start of first page: #indigency -->
+<div data-role="page" id="indigency">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
+		<h1>Indigency</h1>
+		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="slideup"></a>
+	</div>
+	<div id="indigency_body" data-role="content" style="text-align:left;">	
+	
+		 <fieldset data-role="controlgroup">
+	         	<input type="radio" name="crim-civ" id="crim" value="criminal" CHECKED onChange="show('cw');show('crim_op');hide('civ_op');"/>
+	         	<label for="crim">Criminal</label>
+	         	<input type="radio" name="crim-civ" id="civ" value="civil" onChange="hide('cw');hide('crim_op');show('civ_op');"/>
+	         	<label for="civ">Civil</label>
+	    </fieldset>
+	
+		<p><font size=+1><b>Regular Household Income?</b></font><BR><font color=#777777><span id="cw"><em>Exclude the complaining witness.</em></font></span></p>
+		<fieldset data-role="controlgroup">
+ 			<input type="number" name="income" id="income" value="0" class="custom" />
+ 			<select name="range" id="range" value="0" class="custom" />
+ 			<option value="1">Weekly</option>
+ 			<option value="2" selected>Monthly</option>
+ 			<option value="3">Quarterly</option>
+ 			<option value="4">Annually</option>
+ 			</select>
+		</fieldset>
+		<fieldset data-role="controlgroup">
+ 			<select name="household" id="household" value="0" class="custom" />
+ 			<option value="1">Household of one (1)</option>
+ 			<option value="2">Household of two (2)</option>
+ 			<option value="3">Household of three (3)</option>
+ 			<option value="4">Household of four (4)</option>
+ 			<option value="5">Household of five (5)</option>
+ 			<option value="6">Household of six (6)</option>
+ 			<option value="7">Household of seven (7)</option>
+ 			<option value="8">Household of eight (8)</option>
+ 			</select>
+ 		</fieldset>
+ 		<fieldset data-role="controlgroup">
+			
+ 			<input type="checkbox" name="tax" id="tax" value="1" class="custom" />
+ 			<label for="tax">Above is after-tax income</label>
+
+ 			<input type="checkbox" name="assist" id="assist" value="1" class="custom" />
+ 			<label for="assist">On public assistance<sup>&dagger;</sup></label>
+			
+ 			<input type="checkbox" name="contractor" id="contractor" value="1" class="custom" />
+ 			<label for="contractor">Contractor / Self-employed</label>
+
+			<!-- Crim -->
+ 			<span id="crim_op"><input type="checkbox" name="bail" id="bail" value="1" class="custom" />
+ 			<label for="bail">Unable to make bail</label>
+
+  			<input type="checkbox" name="felony" id="felony" value="1" class="custom" />
+ 			<label for="felony">Charged with a felony</label>
+
+ 			<input type="checkbox" name="custody" id="custody" value="1" class="custom" />
+ 			<label for="custody">In custody (no available funds)</label>
+
+ 			<input type="checkbox" name="treatment" id="treatment" value="1" class="custom" />
+ 			<label for="treatment">Question of tuberculosis, mental health, mental retardation or long term care</label></span>
+			<!-- /Crim --> 			
+
+			<!-- Civil -->
+ 			<span id="civ_op" style="display:none;">
+			<input type="checkbox" name="unable" id="unable" value="1" class="custom" />
+ 			<label for="unable">Unable to pay</label>
+			<input type="checkbox" name="deprive" id="deprive" value="1" class="custom" />
+ 			<label for="deprive">Unable to pay w/o depriving self or dependents of life necessities</label>
+			</span>
+			<!-- /Civil --> 		
+			
+		</fieldset>
+		<fieldset data-role="controlgroup">
+ 			<a href="javascript:void('');" onclick="page='ans';calculate('');" data-icon="arrow-r" data-role="button">Calculate</a>
+		</fieldset>
+ 			<p>
+ 				<font size=-1><sup>&dagger;</sup>Specifically: Aid to Families with Dependent Children (AFDC), Emergency Aid to Elderly, Disabled and Children (EAEDC), poverty related veterans' benefits, food stamps, refugee resettlement benefits, Medicaid, or Supplemental Security Income (SSI);</font>
+ 			</p>
+ 		</div><!-- /content -->
+</div><!-- /#indigency -->
+
+
+<!-- Start of first page: #ans -->
+<div data-role="page" id="ans">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#indigency" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
+		<h1>Classification</h1>
+		<a href="#info" data-iconpos="notext" data-theme="d" class="ui-btn-right" data-icon="info" data-transition="slideup"></a>
+	</div>
+	<div id="ans_v" data-role="content" style="text-align:left;">	
+		loading...
+	</div>
+	<!-- /content -->
+</div><!-- /#ans -->
+
+<!-- Start of first page: #find -->
+<div data-role="page" id="find">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#indigency" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
+		<h1>Attorney Directory</h1>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+	</div>
+	<div id="about_v" data-role="content" style="text-align:left;">
+<form name="BBO" action="http://massbbo.org/bbolookup.php" method="get">
+
+This form links directly to the <a href="http://massbbo.org/bbolookup.php" target=_bbo>attorney lookup feature</a> hosted on the BBO's website. 
+
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sf">First Name:</label>
+	<input type="text" name="sf" id="sf" value="" placeholder="First Name"/>
+</div>
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sl">Last Name:</label>
+	<input type="text" name="sl" id="sl" value="" placeholder="Last Name"/>
+</div>
+
+<div data-role="fieldcontain" class="ui-hide-label">
+    <fieldset data-role="controlgroup">
+	   <input type="checkbox" name="soundex" id="soundex" class="custom" value="Soundslike"/>
+	   <label for="soundex">unsure of last name</label>
+    </fieldset>
+</div>
+
+<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="sc">City:</label>
+	<input type="text" name="sc" id="sc" value="" placeholder="City"/>
+</div>
+
+<input type=submit value="submit" onCLick="alert('We are sending you to the BBO\'s attorney directory, over which we have no control.');">
+
+		
+		</form>
+	</div><!-- /content -->
+</div><!-- /#find -->
+
+
+
+<!-- Start of first page: #sentence -->
+<div data-role="page" id="sentence">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#home" data-iconpos="notext" data-icon="arrow-l" data-direction="reverse"></a>
+		<h1>Sentencing</h1>
+		<a href="#info" data-iconpos="notext" data-icon="info" class="ui-btn-right" data-transition="slideup"></a>
+
+	</div>
+	<div id="about_v" data-role="content" style="text-align:left;">
+
+ <div class="container">
 
 <form>
+	    <fieldset data-role="controlgroup">
+	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup" CHECKED onChange="show('sentencer');"/>
+	         	<label for="radio-view-b">Superior Court</label>
+	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" onChange="hide('sentencer');"/>
+	         	<label for="radio-view-a">District Court</label>
+	    </fieldset>
+	</div>
+
   <div id="jail_credits">
   <h3>Jail Credits</h3>
+   
   <label for="hold_start_date">Held Start Date</label>
-  <input class="dater" id="hold_start_date" type="text" name="" placeholder="Start Date">
+  <!--  
+   data-role="date"
+  -->
+  <input type="date" id="hold_start_date" type="text" name="" placeholder="Start Date">
   <label for="hold_end_date">Held End Date</label>
-  <input class="dater" id="hold_end_date" type="text" name="" placeholder="End Date">
+  <input type="date" id="hold_end_date" type="text" name="" placeholder="End Date">
   </div>
   <div id="nature_of_custody">
-  <select multiple>
+  <!--<select multiple>-->
+  <select>
     <option value="true">Held on Bail</option>
     <option value="false">Held without Bail</option>
     <option value="true">Civil Commitment</option>
   </select>
   </div>
   <div id="sentencer">
-    <h2>Prior Crimes</h2>
+    <h3>Prior Crimes</h3>
     <input id="priors" class="crimes" name="">
-    <h2>Criminal History</h2>
-    <select id="priors_select" multiple>
+    <h3>Criminal History</h3>
+    <select id="priors_select" multiple data-role="none" style="width:100%;">
     </select>
-    <h2>Current Charge</h2>
+    <h3>Current Charge</h3>
     <input id="current" class="crimes" name="">
     <!--AUTOCOMPLETE -->
     <div id="current_place">
@@ -85,31 +340,21 @@
 
   </div>
   <button type="button" onclick="getDate()">Calculate</button>
-</form>
   <input id="sentence" type="text" name="sentence" value="" placeholder="sentence">
-      </div>
+</form>
+  </div>
+    
 
-      <hr>
+</div> <!-- /container -->        
+        
+	</div><!-- /content -->
+</div><!-- /#sentence -->
 
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
-    </div> <!-- /container -->        
+</body>
         <script src="assets/js/vendor/jquery-1.11.0.min.js"></script>
         <script src="assets/js/vendor/bootstrap.min.js"></script>
         <script src="assets/js/vendor/underscore-min.js"></script>
         <script src="assets/vendor/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
         <script src="assets/js/main.js"></script>
-        <script src="bundle.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-    </body>
+        <script src="assets/js/bundle.js"></script>
 </html>
