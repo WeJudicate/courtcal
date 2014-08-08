@@ -5,7 +5,11 @@ sentencing_grid = []
 out = []
 out2 = []
 
-current_charge = "";
+current_charge_level = "";
+MaxHC = "";
+MinHC = "";
+MaxPrison = "";
+MinPrison = "";
 
 $.getJSON("data/sentencing_grid.json", function (dat) {
 		//console.log( "HELLO WORLD");
@@ -41,7 +45,12 @@ $("#current").on("autocompleteselect", function( event, ui ) {
 	$("#current_place").html(el("input","id='current_charge' type='hidden' name='current_charge' value='" + ui.item.value + "'",""))
 	$(".crimes").autocomplete({source: out})
 	console.log("The Current Offense Level IS: " + getOffenseLevel(ui.item.value))
-	current_charge = getOffenseLevel( ui.item.value );
+	current_charge_level = getOffenseLevel( ui.item.value );
+	MaxHC = getMaxHC( ui.item.value );	
+	MinHC = getMinHC( ui.item.value );	
+	MaxPrison = getMaxPrison( ui.item.value );	
+	MinPrison = getMinPrison( ui.item.value );	
+	console.log( MaxHC, MinHC, MaxPrison, MinPrison );
 	return false
 });
 
@@ -50,7 +59,8 @@ function getDate() {
 	var priors_in = $("#priors_select").val()
 	//var current_charge = getOffenseLevel( $("#current").val() )
 	//console.log( current_charge )
-	var sentence_info = ( get_history_axis( priors_in, current_charge ) );
+	console.log( current_charge_level)
+	var sentence_info = ( get_history_axis( priors_in, current_charge_level ) );
 	document.getElementById( "sentence_box" ).value = sentence_info["Range"] + " months";
 
 
@@ -66,16 +76,36 @@ function getOffenseLevel(cid) {
 	return _.findWhere(crimes_data, {id: parseInt(cid)})["Offense Seriousness Level"]
 }
 
-function get_history_axis (priors_in, current_charge) {
+function getMaxHC(cid) {
+	return _.findWhere(crimes_data, {id: parseInt(cid)})["Max H/C"]
+}
+
+function getMinHC(cid) {
+	return _.findWhere(crimes_data, {id: parseInt(cid)})["Min H/C"]
+}
+
+function getMaxPrison(cid) {
+	return _.findWhere(crimes_data, {id: parseInt(cid)})["Max Prison"]
+}
+
+function getMinPrison(cid) {
+	return _.findWhere(crimes_data, {id: parseInt(cid)})["Min Prison"]
+}
+
+
+function get_history_axis (priors_in, current_charge_level ) {
     var priors = makePriors()
+    
+    if ( priors_in != null ) {
     priors_in.forEach(function (elem, index, array) {
         var level = getOffenseLevel(elem);
         priors[level].push(index)
+    	})
 
-    })
+    }
     //getAxis(priors, current_charge)
     //return priors
-    return getAxis(priors, current_charge)
+    return getAxis(priors, current_charge_level )
 }
 
 function makePriors() {
@@ -141,7 +171,7 @@ function getAxis (priors, current_charge_level ) {
     }
     
     console.log( "Criminal History Group ", criminal_history_group );
-    console.log( "Current Charge Level ", current_charge );
+    console.log( "Current Charge Level ", current_charge_level );
 
     var grid_index = ""
     if ( criminal_history_group == "A" ) {
@@ -166,7 +196,7 @@ function getAxis (priors, current_charge_level ) {
     //console.log( current_charge_level );
     //console.log( sentencing_grid[grid_index]["Level"][current_charge_level] );
 
-  	return { "MinPrison": "", "MaxPrison": "", "MinHC": "", "MaxHC": "", "Range": sentencing_grid[grid_index]["Level"][current_charge_level]  }
+  	return { "MinPrison": MinPrison, "MaxPrison": MaxPrison, "MinHC": MinHC, "MaxHC": MaxHC, "Range": sentencing_grid[grid_index]["Level"][current_charge_level]  }
 
 
 
