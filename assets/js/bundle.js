@@ -20,9 +20,12 @@ function start(start_date, sentence, hold_begin, hold_end) {
 	finalDay = start_date.add(totalDays,"days")
 	
 	held = moment(hold_end).diff(moment(hold_begin), 'days')
-	console.log(held)
+	if (isNaN(held)) {
+		held = null;
+	}
+	console.log(held)  
 	document.getElementById( "credits_box" ).value = held;
-	
+		
 	finalDay = finalDay.subtract(parseInt(held),"days")
 	return finalDay.format("YYYY-MM-DD")
 }
