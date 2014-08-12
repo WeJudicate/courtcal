@@ -41,6 +41,21 @@ function proper_ans () {
 
 function reset_sent () {
 
+	document.getElementById( "hold_start_date" ).value = null;
+	document.getElementById( "hold_end_date" ).value = null;
+	$("#priors_select option").remove();
+	document.getElementById( "current" ).value = null;
+	
+	document.getElementById( "history_box" ).value = null;
+	document.getElementById( "level_box" ).value = null;
+	document.getElementById( "sentence_box" ).value = null;
+	document.getElementById( "MinPrison" ).value = null;
+	document.getElementById( "MaxPrison" ).value = null;
+	document.getElementById( "MinHC" ).value = null;
+	document.getElementById( "MaxHC" ).value = null;	
+	document.getElementById( "credits_box" ).value = null;
+	
+	hide('county_prison_info');hide('state_prison_info');hide('credits_info');hide('parole_info');
 }
 
 function calculate () {

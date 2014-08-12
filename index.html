@@ -351,11 +351,11 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 		</div>
 		<div id="civ_links" style="display:none;margin-top:0;padding-top:0;">	
 			<h3>Waiver of Fees</h3>
-			<p>In order to apply for a waiver of fees, you'll likely need to complete the form(s) and follow the instructions linked below. See <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.</p>
+			<p>In order to apply for a waiver of fees, one will likely need to complete the form(s) and follow the instructions linked below. See <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.</p>
 			<fieldset data-role="controlgroup"> 
 				<a href="http://www.mass.gov/courts/docs/forms/sjc/affidavitofindigency.pdf" target="_blank" data-role="button">Affidavit of Indigency</a>
-				<a id="supp_aff" href="http://www.mass.gov/courts/docs/forms/sjc/supplementaffidavit.pdf" target="_blank" data-role="button" style="display:none;">Supplement to the Affidavit of Indigency</a>
-				<a id="inmates" href="http://www.mass.gov/courts/docs/forms/sjc/inmates-affidavit-of-indigency.pdf" target="_blank" data-role="button" style="display:none;">Inmate's Affidavit of Indigency</a>
+				<a id="supp_aff" href="http://www.mass.gov/courts/docs/forms/sjc/supplementaffidavit.pdf" target="_blank" data-role="button" style="display:none;">Supplement to the Affidavit</a>
+				<a id="inmates" href="http://www.mass.gov/courts/docs/forms/sjc/inmates-affidavit-of-indigency.pdf" target="_blank" data-role="button" style="display:none;">Inmate's Affidavit</a>
 				<a href="http://www.mass.gov/courts/docs/sjc/docs/instructionsforaffidavit.pdf" target="_blank" data-role="button" >Instructions for Users</a>
 			</fieldset>
 		</div>
@@ -415,15 +415,16 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 <p><hr></p>
 
 <div id="state_prison_info" style="display:none;">
-  History Group</a>:
-  <input id="history_box" type="text" name="history_box" value="" placeholder="history group">
+  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/criminal-history-groups-ma-sentencing-guidelines-gen.html" target=_blank>History Group</a>:
+  <input id="history_box" type="text" name="history_box" value="" placeholder="N/A">
 
-  Seriousness Level</a>:
-  <input id="level_box" type="text" name="level_box" value="" placeholder="seriousness level">
+  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/sentencing-guide-offense-seriousness-gen.html" target=_blank>Seriousness</a>:
+  <font size=-1 color=#777777><em>(of lead charge)</em></font>
+  <input id="level_box" type="text" name="level_box" value="" placeholder="N/A">
 
-  MA Sentencing Guidelines:
-  <BR><font size=-1 color=#777777><em>Requiers adjustment for second and subsequent convictions.</em></font>
-  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="sentencing guideline">
+  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/ma-sentencing-grid-gen.html" target=_blank>Sentencing Grid</a> Cell:
+  <BR><font size=-1 color=#777777><em>(not adjusted for second and subsequent convictions)</em></font>
+  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="N/A">
 
   Minimum State Prison Term:
   <input id="MinPrison" type="text" name="MinPrison" value="" placeholder="N/A">
@@ -433,21 +434,21 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 </div>
 
 <div id="county_prison_info" style="display:none;">
-  Minimum House of Corrections Term:
+  Minimum HOC Term:
   <input id="MinHC" type="text" name="MinHC" value="" placeholder="N/A">
 
-  Maximum House of Corrections Term:
+  Maximum HOC Term:
   <input id="MaxHC" type="text" name="MaxHC" value="" placeholder="N/A">
 </div>
 
 <div id="credits_info" style="display:none;">
   Jail Credits (days):
-  <input id="credits_box" type="text" name="credits_box" value="" placeholder="jail credits">
+  <input id="credits_box" type="text" name="credits_box" value="" placeholder="N/A">
 </div>
 
 <div id="parole_info" style="display:none;">
-  Half Time Minus Credits:<BR><font size=-1 color=#777777><em>Assumes sentence starts today.</em></font>
-  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="half time">
+  Half Time Minus Credits:<BR><font size=-1 color=#777777><em>(assumes sentence starts today)</em></font>
+  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="N/A">
 </div>
 
   <p>

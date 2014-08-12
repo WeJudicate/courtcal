@@ -21,6 +21,8 @@ function start(start_date, sentence, hold_begin, hold_end) {
 	
 	held = moment(hold_end).diff(moment(hold_begin), 'days')
 	console.log(held)
+	document.getElementById( "credits_box" ).value = held;
+	
 	finalDay = finalDay.subtract(parseInt(held),"days")
 	return finalDay.format("YYYY-MM-DD")
 }
@@ -233,7 +235,6 @@ module.exports = function (args, opts) {
             argv._.push(key);
         });
     }
-
     return argv;
 };
 

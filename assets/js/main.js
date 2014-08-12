@@ -68,8 +68,8 @@ function getDate() {
 	document.getElementById( "MaxPrison" ).value = sentence_info["MaxPrison"];
 
 	document.getElementById( "MinHC" ).value = sentence_info["MinHC"];
-	document.getElementById( "MaxHC" ).value = sentence_info["MaxHC"];
-
+	document.getElementById( "MaxHC" ).value = sentence_info["MaxHC"];	
+	
     // county is "sup"; state is "dist"
     county = $('input:radio[name=radio-view]:checked').val();
 
@@ -84,6 +84,7 @@ function getDate() {
 	console.log(rangeString)
     $("#sentence_range_box").val(rangeString)
 	//console.log(get_history_axis(priors_in))
+	
 }
 
 function getParoleRangePs (start_date, county, sentence_info, begin, end) {
@@ -207,6 +208,8 @@ function getAxis (priors, current_charge_level ) {
     
     console.log( "Criminal History Group ", criminal_history_group );
     console.log( "Current Charge Level ", current_charge_level );
+	document.getElementById( "history_box" ).value = criminal_history_group;
+	document.getElementById( "level_box" ).value = current_charge_level;
 
     var grid_index = ""
     if ( criminal_history_group == "A" ) {
