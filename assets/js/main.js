@@ -74,7 +74,13 @@ function getDate() {
     county = $('input:radio[name=radio-view]:checked').val();
 
     minmax = getParoleRangePs(new Date(), county, sentence_info, $("#hold_start_date").val(), $("#hold_end_date").val())
-    rangeString = "Minimum Parole Eligibility Date: " + minmax[0] + ". Maximum Parole Eligibility Date: " + minmax[1]
+    //rangeString = "Minimum Parole Eligibility Date: " + minmax[0] + ". Maximum Parole Eligibility Date: " + minmax[1]
+    var radioview = $('input[name="radio-view"]:checked').val();
+    if (radioview == "sup") { 
+    	rangeString = minmax[0]
+    } else {
+   		rangeString = "N/A"
+    }
 	console.log(rangeString)
     $("#sentence_range_box").val(rangeString)
 	//console.log(get_history_axis(priors_in))

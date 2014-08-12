@@ -25,6 +25,24 @@ function readCookie(name) {
 	return null;
 }
 
+function proper_ans () { 
+	var radioview = $('input[name="radio-view"]:checked').val();
+	if (radioview == "dist") {
+		hide('county_prison_info');
+		show('state_prison_info');
+		hide('parole_info');		
+	} else if (radioview == "sup") {
+		show('county_prison_info');
+		hide('state_prison_info');	
+		show('parole_info');
+	}
+	show('credits_info');
+} 
+
+function reset_sent () {
+
+}
+
 function calculate () {
 	var crimciv = $('input[name="crimciv"]:checked').val();
 	var income =  document.getElementById('income').value; 
