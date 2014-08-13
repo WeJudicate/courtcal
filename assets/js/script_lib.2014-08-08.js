@@ -25,26 +25,10 @@ function readCookie(name) {
 	return null;
 }
 
-function proper_ans () { 
-	var radioview = $('input[name="radio-view"]:checked').val();
-	if (radioview == "dist") {
-		hide('county_prison_info');
-		show('state_prison_info');
-		hide('parole_info');		
-	} else if (radioview == "sup") {
-		show('county_prison_info');
-		hide('state_prison_info');	
-		show('parole_info');
-	}
-	show('credits_info');
-} 
-
 function reset_sent () {
 
-	document.getElementById( "hold_start_date" ).value = null;
-	document.getElementById( "hold_end_date" ).value = null;
-	$("#priors_select option").remove();
 	document.getElementById( "current" ).value = null;
+	$("#priors_select option").remove();
 	
 	document.getElementById( "history_box" ).value = null;
 	document.getElementById( "level_box" ).value = null;
@@ -53,9 +37,18 @@ function reset_sent () {
 	document.getElementById( "MaxPrison" ).value = null;
 	document.getElementById( "MinHC" ).value = null;
 	document.getElementById( "MaxHC" ).value = null;	
-	document.getElementById( "credits_box" ).value = null;
+
+	document.getElementById( "start_sent" ).value = null;
+	document.getElementById( "NLT" ).value = null;
+	document.getElementById( "NMT" ).value = null;
+	document.getElementById( "hold_start_date" ).value = null;
+	document.getElementById( "hold_end_date" ).value = null;
 	
-	hide('county_prison_info');hide('state_prison_info');hide('credits_info');hide('parole_info');
+	document.getElementById( "credits_box" ).value = null;
+	document.getElementById( "sentence_range_box" ).value = null;
+	
+	hide('sentencing_conid');
+	hide('parole_info');
 }
 
 function calculate () {

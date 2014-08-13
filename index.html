@@ -55,7 +55,8 @@
 				<li><a href="#indigency"><h3>Indigency</h3><p style="white-space:normal;">
 					Calculate likely indigency status for MA civil and criminal proceedings based on SJC Rule 3:10 and MGL c261 s27A.
 				</p></a></li>		
-				<li><a href="#sentence"><h3>Sentencing</h3><p style="white-space:normal;">Count days for jail credit, determine sentence based on MA Sentencing Guidelines, and estimate parole eligibility date.</p></a></li>		
+				<li><a href="#sentence"><h3>Sentencing</h3><p style="white-space:normal;">Determine sentence based on MA Sentencing Guidelines.</p></a></li>	
+				<!--<li><a href="#sentence"><h3>Sentencing</h3><p style="white-space:normal;">Count days for jail credit, determine sentence based on MA Sentencing Guidelines, and estimate parole eligibility date.</p></a></li>	-->				
 				</ul>
  		</div><!-- /content -->
 </div><!-- /#home -->
@@ -351,7 +352,7 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 		</div>
 		<div id="civ_links" style="display:none;margin-top:0;padding-top:0;">	
 			<h3>Waiver of Fees</h3>
-			<p>In order to apply for a waiver of fees, one will likely need to complete the form(s) and follow the instructions linked below. See <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.</p>
+			<p>In order to apply for a waiver of fees, a person matching your earlier entries will likely need to complete the form(s) and follow the instructions linked below. See <a href="http://www.mass.gov/courts/forms/indigency-forms-gen.html" target=_blank>Mass. Court: Indigency (waiver of fees)</a>.</p>
 			<fieldset data-role="controlgroup"> 
 				<a href="http://www.mass.gov/courts/docs/forms/sjc/affidavitofindigency.pdf" target="_blank" data-role="button">Affidavit of Indigency</a>
 				<a id="supp_aff" href="http://www.mass.gov/courts/docs/forms/sjc/supplementaffidavit.pdf" target="_blank" data-role="button" style="display:none;">Supplement to the Affidavit</a>
@@ -374,97 +375,116 @@ This form links directly to the <a href="http://massbbo.org/bbolookup.php" targe
 	</div>
 	<div id="about_v" data-role="content" style="text-align:left;">
 
- <div class="container">
 
 <form>
-	    <fieldset data-role="controlgroup">
-	         	<input type="radio" name="radio-view" id="radio-view-b" value="sup"  onChange="hide('sentencer');hide('county_prison_info');hide('state_prison_info');hide('credits_info');hide('parole_info');"/>
-	         	<label for="radio-view-b">House of Corrections</label>
-	         	<input type="radio" name="radio-view" id="radio-view-a" value="dist" CHECKED onChange="show('sentencer');hide('county_prison_info');hide('state_prison_info');hide('credits_info');hide('parole_info');"/>
-	         	<label for="radio-view-a">State Prison</label>
-	    </fieldset>
-	</div>
 
-  <div id="jail_credits">
-  <p><font size=+1><b>Jail Credits</b></font><BR><font color=#777777><em>Enter only credit-eligible dates.</em></font></p>
-  <label for="hold_start_date">Held Start Date <font size=-1 color=#777777><em>(mm/dd/yyyy)</em></font></label>
-  <!--  
-   data-role="date"
-  -->
-  <input type="date" id="hold_start_date" type="text" name="" placeholder="Start Date">
-  <label for="hold_end_date">Held End Date <font size=-1 color=#777777><em>(mm/dd/yyyy)</em></font></label>
-  <input type="date" id="hold_end_date" type="text" name="" placeholder="End Date">
-  </div>
-  <div id="sentencer">
-	<p><font size=+1><b>Prior Convictions</b></font><BR><font color=#777777><em>Enter all prior convictions.</em></font></p>
-    <input id="priors" class="crimes" name="">
-	<p><font size=+1><b>Criminal History</b></font>
-    <select id="priors_select" multiple data-role="none" style="width:100%;">
-    </select>
-  </div>
-	<p><font size=+1><b>Current Charge(s)</b></font><BR><font color=#777777><em>Enter lead (most serious) charge.</em></font></p>
+	<font size=+1><b>Current Charge(s)</b></font><BR><font color=#777777>Enter lead (most serious) charge.</font>
     <input id="current" class="crimes" name="">
     <!--AUTOCOMPLETE -->
     <div id="current_place">
     </div>
 
-  <div id="calculator">
-
+  <div id="sentencer">
+	<p><font size=+1><b>Prior Convictions</b></font><BR><font color=#777777>Enter all prior convictions.</font>
+    <input id="priors" class="crimes" name="">
+	</p>
+	<p><b>Criminal History</b><br>
+	<font size=-1 color=#777777>Will list prior convictions after entry above.</font></label>
+    <select id="priors_select" multiple data-role="none" style="width:100%;">
+    </select>
+	
   </div>
 
-<p><hr></p>
+  <p><button type="button" onclick="show('sentencing_conid');getDate();">Apply Guidelines</button></p>
 
-<div id="state_prison_info" style="display:none;">
-  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/criminal-history-groups-ma-sentencing-guidelines-gen.html" target=_blank>History Group</a>:
-  <input id="history_box" type="text" name="history_box" value="" placeholder="N/A">
-  <p>
-  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/sentencing-guide-offense-seriousness-gen.html" target=_blank>Seriousness</a>:
-  <font size=-1 color=#777777><em>(of lead charge)</em></font>
-  <input id="level_box" type="text" name="level_box" value="" placeholder="N/A">
-  </p><p>
-  <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/ma-sentencing-grid-gen.html" target=_blank>Sentencing Grid</a> Cell:
-  <BR><font size=-1 color=#777777><em>(not adjusted for second and subsequent convictions)</em></font>
-  <input id="sentence_box" type="text" name="sentence_box" value="" placeholder="N/A">
-  <font size=-1 color=#777777>In the absence of a manditory sentence, any date range is the upper end (not more than), with the lower end (not less than) = 2/3 of the not more than sentence. See <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/sentencing-guide-locating-grid-cell-gen.html" target=_blank>Locating Grid Cell</a>.</font>
-  </p><p>
-  Minimum State Prison Term:
-  <input id="MinPrison" type="text" name="MinPrison" value="" placeholder="N/A">
-  </p><p>
-  Maximum State Prison Term:
-  <input id="MaxPrison" type="text" name="MaxPrison" value="" placeholder="N/A">
-  </p>
+  <p><hr></p>
+
+	<div id="sentencing_conid" style="display:none;">
+		<font size=+1><b>Sentencing Considerations</b></font>
+		<p>
+		<a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/criminal-history-groups-ma-sentencing-guidelines-gen.html" target=_blank>History Group</a>:
+		<input id="history_box" type="text" name="history_box" value="" placeholder="N/A">
+		</p><p>
+		<a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/sentencing-guide-offense-seriousness-gen.html" target=_blank>Seriousness</a>:
+		<font size=-1 color=#777777><em>(of lead charge)</em></font>
+		<input id="level_box" type="text" name="level_box" value="" placeholder="N/A">
+		</p><p>
+		<a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/ma-sentencing-grid-gen.html" target=_blank>Sentencing Grid</a> Cell:
+		<font size=-1 color=#777777><em>(not adjusted for second and subsequent convictions)</em></font>
+		<input id="sentence_box" type="text" name="sentence_box" value="" placeholder="N/A">
+		<font size=-1 color=#777777>In the absence of a mandatory minimum below, when using the sentencing guidelines, "[t]he minimum, or Not Less Than (NLT), sentence [should] be set at two-thirds of the maximum sentence. This applies to sentences to Houses of Correction and State Prison." See <a href="http://www.mass.gov/courts/court-info/trial-court/sent-commission/sentencing-guide-incarcerative-sentences-gen.html" target=_blank>Incarcerative Sentences</a>.</font>
+		</p><p>
+		Minimum State Prison Term:
+		<input id="MinPrison" type="text" name="MinPrison" value="" placeholder="N/A">
+		</p><p>
+		Maximum State Prison Term:
+		<input id="MaxPrison" type="text" name="MaxPrison" value="" placeholder="N/A">
+		</p>
+		<p>
+		Minimum HOC Term:
+		<input id="MinHC" type="text" name="MinHC" value="" placeholder="N/A">
+		</p><p>
+		Maximum HOC Term:
+		<input id="MaxHC" type="text" name="MaxHC" value="" placeholder="N/A">
+		</p>
+		<p><hr></p>	
+	</div>
+
+
+<div id="imposed_sent" style="display:none;">
+	<p><font size=+1><b>Imposed Sentence</b></font></p>
+	<p>Start Date:
+	<input type="date" id="start_sent" name="" placeholder="Start Date"> 
+	</p><p>
+	Location:<fieldset data-role="controlgroup">
+       	<input type="radio" name="radio-view" id="radio-view-a" CHECKED value="dist" onChange="show('NLT_p');"/>
+       	<label for="radio-view-a">State Prison</label>
+       	<input type="radio" name="radio-view" id="radio-view-b" value="sup" onChange="document.getElementById('NLT').value = null;hide('NLT_p');"/>
+       	<label for="radio-view-b">House of Corrections</label>
+    </fieldset>
+	</p><p>
+	<font size=-1 color=#777777>Enter the sentence using the following form: years/months/days (e.g., if a sentence is 18 months, enter 0/18/0; 1.5 years, enter 1.5/0/0; a year and a day, 1/0/1).</font></label>
+	</p><p id="NLT_p">
+	No Less Than:
+	<input id="NLT" type="text" name="" placeholder="years/months/days"> 
+	</p><p>
+	No More Than:
+	<input id="NMT" type="text" name="" placeholder="years/months/days"> 
+	</p>
+  
+  <div id="jail_credits">
+  <p><font size=+1><b>Jail Credits</b></font><BR><font color=#777777>Enter only credit-eligible dates.</font></p>
+  <label for="hold_start_date">Held Start Date <font size=-1 color=#777777><em>(mm/dd/yyyy)</em></font></label>
+  <!--  
+   data-role="date"
+  -->
+  <input type="date" id="hold_start_date" name="" placeholder="Start Date">
+  <label for="hold_end_date">Held End Date <font size=-1 color=#777777><em>(mm/dd/yyyy)</em></font></label>
+  <input type="date" id="hold_end_date" name="" placeholder="End Date">
+  </div>
+	<p>
+	Credits (days):<br>
+	<font size=-1 color=#777777>If you've entered a start and end date above, you can leave this field blank. It will be calculated based on the above.</font></label>
+	<input id="credits_box" type="text" name="credits_box" value="" placeholder="N/A">
+	</p>
+
+
+	<p><button type="button" onclick="show('parole_info');getDate();">Estimate Parole Eligibility</button></p>
+
+	<p><hr></p>
+
+	<div id="parole_info" style="display:none;">
+		<font size=+1><b>Parole Eligibility</b></font><br>
+		<font size=-1 color=#777777>Applicable to the above sentence only. Does not account for other sentences.</font>
+		<input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="N/A">
+		</p>
+		<p><hr></p>
+	</div>
+  
 </div>
 
-<div id="county_prison_info" style="display:none;">
   <p>
-  Minimum HOC Term:
-  <input id="MinHC" type="text" name="MinHC" value="" placeholder="N/A">
-  </p><p>
-  Maximum HOC Term:
-  <input id="MaxHC" type="text" name="MaxHC" value="" placeholder="N/A">
-  </p>
-</div>
-
-<div id="credits_info" style="display:none;">
-  <p>
-  Jail Credits (days):
-  <input id="credits_box" type="text" name="credits_box" value="" placeholder="N/A">
-  </p>
-</div>
-
-<div id="parole_info" style="display:none;">
-  <p>
-  Half Time Minus Credits:<BR><font size=-1 color=#777777><em>(assumes sentence starts today)</em></font>
-  <input id="sentence_range_box" type="text" name="sentence_range_box" value="" placeholder="N/A">
-  </p>
-</div>
-
-  <p>
-  <button type="button" onclick="proper_ans();getDate();">Calculate</button>
-  </p>
-
-  <p>
-  <button type="button" onclick="reset_sent()">Reset</button>
+  <button type="button" onclick="reset_sent()">Reset All</button>
   </p>
 
 
